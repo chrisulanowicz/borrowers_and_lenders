@@ -1,0 +1,74 @@
+<a href="/sessions/destroy">Logout</a>
+<p>Name: <%= @lender.first_name %> <%= @lender.last_name %></p>
+<p>Account Balance: <%= number_to_currency @lender.money %></p>
+
+<h3>List of people in need of help:</h3>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Need Money For</th>
+			<th>Reason for Loan</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @borrowers.each do |b| %>
+			<tr>
+				<td><%= b.BFName %> <%= b.BLName %></td>
+				<td><%= b.purpose %></td>
+				<td><%= b.description %></td>
+				<td><%= number_to_currency b.needed %></td>
+				<td><%= number_to_currency b.raised %></td>
+				<td>
+					<form action="/histories" method="post">
+						<select name="lend">
+							<option></option>
+							<option value="<%= b.needed/4 %>"><%= number_to_currency b.needed/4 %></option>
+							<option value="<%= b.needed/2 %>"><%= number_to_currency b.needed/2 %></option>
+							<option value="<%= b.needed %>"><%= number_to_currency b.needed %></option>
+						</select>
+						<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+						<input type="hidden" name="_method" value="patch" />
+						<input type="hidden" name="borrower_id" value="<%= b.Bid %>" />
+						<input type="submit" value="Lend" />
+					</form>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<% if flash[:errors] %>
+	<p class="errors"><%= flash[:errors] %></p>
+<% end %>
+
+<h3>List of People you lent money to: </h3>
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Need Money For</th>
+			<th>Reason for Loan</th>
+			<th>Amount Needed</th>
+			<th>Amount Raised</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @borrowers.each do |b| %>
+			<% if b.Lid == session[:user_id] %>
+			<tr>
+				<td><%= b.BFName %> <%= b.BLName %></td>
+				<td><%= b.purpose %></td>
+				<td><%= b.description %></td>
+				<td><%= number_to_currency b.needed %></td>
+				<td><%= number_to_currency b.raised %></td>
+				<td><%= number_to_currency b.lent %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

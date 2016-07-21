@@ -1,0 +1,45 @@
+// Place all the styles related to the Lenders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	padding: 20px;
+}
+#container {
+	width: 700px;
+	margin: 0px auto;
+}
+.errors {
+	color: red;
+	font-style: italic;
+	margin: 0px 0px 0px 20px;
+}
+#lender {
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#borrower {
+	margin-left: 20px;
+	width: 350px;
+	display: inline-block;
+}
+
+	#lender h2, #borrower h2 {
+		text-decoration: underline;
+	}
+
+	label {
+		display: inline;
+		margin-top: 10px;
+	}
+
+	textarea {
+		vertical-align: top;
+	}
+
+	input, textarea, select {
+		float: right;
+		clear: both;
+	}

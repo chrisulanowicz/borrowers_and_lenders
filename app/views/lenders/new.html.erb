@@ -1,0 +1,165 @@
+<div id="container">
+	<div id="lender">
+		<h2>Lender</h2>
+		<form action="/lenders" method="post">
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['first_name'] %>
+						<p class="errors">First name <%= flash[:errors]['first_name'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_first_name">First Name: </label>
+					<input type="text" id="len_first_name" name="lender[first_name]" />
+			</p>
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['last_name'] %>
+						<p class="errors">Last name <%= flash[:errors]['last_name'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_last_name">Last Name: </label>
+					<input type="text" id="len_last_name" name="lender[last_name]" />
+			</p>
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['email'] %>
+						<p class="errors">Email <%= flash[:errors]['email'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_email">Email: </label>
+					<input type="text" id="len_email" name="lender[email]" />
+			</p>
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['password'] %>
+						<p class="errors">Password <%= flash[:errors]['password'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_password">Password: </label>
+					<input type="password" id="len_password" name="lender[password]" />
+			</p>
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['password_confirmation'] %>
+						<p class="errors">Confirmation <%= flash[:errors]['password_confirmation'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_password_confirmation">Confirm Password: </label>
+					<input type="password" id="len_password_confirmation" name="lender[password_confirmation]" />
+			</p>
+			<p>
+				<% if flash[:errors] %>
+					<% if flash[:errors]['money'] %>
+						<p class="errors">Amount available <%= flash[:errors]['money'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="len_money">Amount Available: </label>
+					<select id="len_money" name="lender[money]">
+						<option></option>
+						<option value="100">$100</option>
+						<option value="500">$500</option>
+						<option value="1000">$1,000</option>
+						<option value="5000">$5,000</option>
+						<option value="10000">$10,000</option>
+						<option value="100000">$100,000</option>
+					</select>
+			</p>
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+			<input type="submit" value="Register" />
+		</form>
+		<a href="/sessions">Already a lender?</a>
+	</div>
+	<div id="borrower">
+		<h2>Borrower</h2>
+		<form action="borrowers" method="post">
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['first_name'] %>
+						<p class="errors">First name <%= flash[:bor_errors]['first_name'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_first_name">First Name: </label>
+					<input type="text" id="bor_first_name" name="borrower[first_name]" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['last_name'] %>
+						<p class="errors">Last name <%= flash[:bor_errors]['last_name'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_last_name">Last Name: </label>
+					<input type="text" id="bor_last_name" name="borrower[last_name" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['email'] %>
+						<p class="errors">Email <%= flash[:bor_errors]['email'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_email">Email: </label>
+					<input type="text" id="bor_email" name="borrower[email]" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['password'] %>
+						<p class="errors">Password <%= flash[:bor_errors]['password'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_password">Password: </label>
+					<input type="password" id="bor_password" name="borrower[password]" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['password_confirmation'] %>
+						<p class="errors">Confirmation <%= flash[:bor_errors]['password_confirmation'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_password_confirmation">Confirm Password: </label>
+					<input type="password" id="bor_password_confirmation" name="borrower[password_confirmation]" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['money'] %>
+						<p class="errors">Amount needed <%= flash[:bor_errors]['money'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_money">Amount Needed: </label>
+					<select id="bor_money" name="borrower[money]">
+						<option></option>
+						<option value="100">$100</option>
+						<option value="500">$500</option>
+						<option value="1000">$1000</option>
+						<option value="2000">$2000</option>
+						<option value="3000">$3000</option>
+						<option value="4000">$4000</option>
+						<option value="5000">$5000</option>
+						<option value="10000">$10000</option>
+					</select>
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['purpose'] %>
+						<p class="errors">Purpose <%= flash[:bor_errors]['purpose'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_purpose">Need Money For: </label>
+					<input type="text" id="bor_purpose" name="borrower[purpose]" />
+			</p>
+			<p>
+				<% if flash[:bor_errors] %>
+					<% if flash[:bor_errors]['description'] %>
+						<p class="errors">Description <%= flash[:bor_errors]['description'][0] %></p>
+					<% end %>
+				<% end %>
+				<label for="bor_description">Description: </label>
+					<textarea id="bor_description" name="borrower[description]" cols="18" rows="3"></textarea>
+			</p>
+			<p>
+				<input type="hidden" name="borrower[raised]" value="0" />
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+				<input type="submit" value="Register" />
+			</p>
+		</form>
+		<a href="/sessions">Already a borrower?</a>
+	</div>
+</div>

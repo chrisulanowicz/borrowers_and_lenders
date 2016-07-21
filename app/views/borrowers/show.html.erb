@@ -1,0 +1,27 @@
+<a href="/sessions/destroy">Logout</a>
+<p>Name: <%= @borrower.first_name %> <%= @borrower.last_name %></p>
+<p>Amount Needed: <%= number_to_currency @borrower.money %></p>
+<p>Amount Raised: <%= number_to_currency @borrower.raised %></p>
+
+<h3>List of people who lent you money:</h3>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Amount Lent</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @lenders.each do |lender| %>
+			<% if lender.b_id == session[:user_id] %>
+			<tr>
+				<td><%= lender.lender_first_name %></td>
+				<td><%= lender.lender_email %></td>
+				<td><%= lender.lent %></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

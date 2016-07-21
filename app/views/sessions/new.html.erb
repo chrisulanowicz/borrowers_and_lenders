@@ -1,0 +1,22 @@
+<div id="container">
+	<h2>Login</h2>
+
+	<% if flash[:errors] %>
+		<p class="errors"><%= flash[:errors] %></p>
+	<% end %>
+
+	<form action="/sessions" method="post">
+		<p>
+			<label for="email">Email: </label>
+				<input type="text" id="email" name="email" />
+		</p>
+		<p>
+			<label for="password">Password: </label>
+				<input type="password" id="password" name="password" />
+		</p>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+		<input type="submit" value="Login" />
+	</form>
+
+	<a href="/">Click here to register</a>
+</div>
